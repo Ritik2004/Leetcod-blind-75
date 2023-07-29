@@ -1,0 +1,38 @@
+
+import java.io.*;
+import java.util.*;
+class Solution {
+    static void bfs(int visit[],ArrayList<ArrayList<Integer>> ans,int ind){
+        visit[ind] = 1;
+        for(int it:ans.get(ind)){
+            if(visit[it]==0){
+                bfs(visit,ans,it);
+            }
+        }
+    }
+    static int numProvinces(ArrayList<ArrayList<Integer>> adj, int V) {
+        // code here
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        for(int i=0;i<V;i++){
+            ans.add(new ArrayList<>());
+        }
+        for(int i=0;i<V;i++){
+            for(int j=0;j<V;j++){
+                if(adj.get(i).get(j)==1 && i!=j){
+                    ans.get(i).add(j);
+                    ans.get(j).add(i);
+                }
+            }
+        }
+        
+        int count = 0;
+        int visit[] = new int[V];
+        for(int i=0;i<V;i++){
+        if(visit[i]==0){
+             count++;
+             bfs(visit,ans,i);
+        }
+        }
+        return count;
+    }
+};
