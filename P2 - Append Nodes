@@ -1,0 +1,33 @@
+
+public class Solution {
+
+    public static Node<Integer> addNodes(Node<Integer> head, int n, int m) {
+        // Write your code here.
+        Node<Integer> temp = head;
+        while(temp!=null && temp.next!=null){
+            int x = m-1;
+            while(x--!=0 && temp.next!=null){
+                temp = temp.next;
+               
+            }
+            int sum = 0;
+            x = n;
+
+            while(x--!=0 && temp.next!=null){
+                  sum+=temp.next.data;
+                  temp=temp.next;
+                 
+            }
+            if(sum!=0){
+                Node<Integer> temp1 = new Node<>(sum);
+                if(temp.next!=null){
+                    temp1.next = temp.next;
+                }
+                temp.next = temp1;
+                temp=temp.next.next;
+            }
+
+        }
+           return head;
+    }
+}
